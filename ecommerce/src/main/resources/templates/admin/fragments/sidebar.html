@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside th:fragment="sidebar(active)" class="admin-sidebar" id="adminSidebar">
+    <div class="brand">
+        <div class="brand-mark">S</div>
+        <div class="brand-name">Suprith Store
+            <small>Admin Console</small>
+        </div>
+    </div>
+
+    <nav class="admin-nav">
+        <div class="nav-section-label">Overview</div>
+        <a href="/admin/dashboard" class="nav-link" th:classappend="${active == 'dashboard'} ? 'active'">
+            <i class="fa-solid fa-chart-line"></i> Dashboard
+        </a>
+
+        <div class="nav-section-label">Catalog</div>
+        <a href="/admin/products" class="nav-link" th:classappend="${active == 'products'} ? 'active'">
+            <i class="fa-solid fa-box-open"></i> Products
+        </a>
+        <a href="/admin/categories" class="nav-link" th:classappend="${active == 'categories'} ? 'active'">
+            <i class="fa-solid fa-sitemap"></i> Categories
+        </a>
+        <a href="/admin/brands" class="nav-link" th:classappend="${active == 'brands'} ? 'active'">
+            <i class="fa-solid fa-tags"></i> Brands
+        </a>
+        <a href="/admin/inventory" class="nav-link" th:classappend="${active == 'inventory'} ? 'active'">
+            <i class="fa-solid fa-warehouse"></i> Inventory
+        </a>
+
+        <div class="nav-section-label">Sales</div>
+        <a href="/admin/orders" class="nav-link" th:classappend="${active == 'orders'} ? 'active'">
+            <i class="fa-solid fa-cart-shopping"></i> Orders
+        </a>
+        <a href="/admin/coupons" class="nav-link" th:classappend="${active == 'coupons'} ? 'active'">
+            <i class="fa-solid fa-ticket"></i> Coupons
+        </a>
+        <a href="/admin/reviews" class="nav-link" th:classappend="${active == 'reviews'} ? 'active'">
+            <i class="fa-solid fa-star"></i> Reviews
+        </a>
+
+        <div class="nav-section-label">People</div>
+        <a href="/admin/users" class="nav-link" th:classappend="${active == 'users'} ? 'active'">
+            <i class="fa-solid fa-users"></i> Users
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <a href="/" class="nav-link"><i class="fa-solid fa-arrow-left"></i> Back to store</a>
+    </div>
+</aside>
+</body>
+</html>

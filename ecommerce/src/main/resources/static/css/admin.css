@@ -1,0 +1,378 @@
+/* ==========================================================================
+   ADMIN DASHBOARD DESIGN SYSTEM
+   Palette: deep space navy shell + violet-to-cyan gradient accent
+   Type: Sora (display) / Inter (UI & body) / JetBrains Mono (data, codes)
+   ========================================================================== */
+
+:root {
+  /* Shell (sidebar / topnav) */
+  --shell-bg: #0b1120;
+  --shell-panel: #121a2e;
+  --shell-panel-glass: rgba(18, 26, 46, 0.72);
+  --shell-border: rgba(148, 163, 184, 0.12);
+  --shell-glow: rgba(124, 58, 237, 0.35);
+
+  /* Content canvas */
+  --canvas: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-border: rgba(15, 23, 42, 0.06);
+  --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 24px -12px rgba(15, 23, 42, 0.12);
+
+  /* Text */
+  --text-on-shell: #e2e8f0;
+  --text-on-shell-muted: #94a3b8;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+
+  /* Accents */
+  --accent-violet: #7c3aed;
+  --accent-cyan: #22d3ee;
+  --accent-amber: #f59e0b;
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+  --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%);
+  --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #f43f5e 100%);
+
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+body.admin-shell {
+  background: var(--canvas);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.font-mono { font-family: var(--font-mono); }
+
+/* ---------------- Sidebar ---------------- */
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 272px;
+  background: linear-gradient(180deg, var(--shell-bg) 0%, #0d1424 100%);
+  border-right: 1px solid var(--shell-border);
+  z-index: 1030;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease;
+}
+
+.admin-sidebar .brand {
+  padding: 1.5rem 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.admin-sidebar .brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-family: var(--font-display);
+  box-shadow: 0 0 24px var(--shell-glow);
+}
+
+.admin-sidebar .brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-on-shell);
+  font-size: 1.05rem;
+}
+
+.admin-sidebar .brand-name small {
+  display: block;
+  color: var(--text-on-shell-muted);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-nav {
+  padding: 0.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.admin-nav .nav-section-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-on-shell-muted);
+  padding: 1rem 0.75rem 0.4rem;
+  font-weight: 600;
+}
+
+.admin-nav .nav-link {
+  color: var(--text-on-shell-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 0.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.admin-nav .nav-link i {
+  width: 18px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.admin-nav .nav-link:hover {
+  color: var(--text-on-shell);
+  background: rgba(148, 163, 184, 0.08);
+  transform: translateX(2px);
+}
+
+.admin-nav .nav-link.active {
+  color: white;
+  background: var(--gradient-primary);
+  box-shadow: 0 8px 20px -8px var(--shell-glow);
+}
+
+.admin-sidebar .sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--shell-border);
+}
+
+/* ---------------- Topnav ---------------- */
+.admin-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  margin-left: 272px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 0.9rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-topnav .page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.admin-topnav .admin-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+#sidebarToggle { display: none; }
+
+/* ---------------- Main content ---------------- */
+.admin-main {
+  margin-left: 272px;
+  padding: 1.75rem;
+}
+
+/* ---------------- Cards ---------------- */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.stat-card .stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.stat-card .stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-card .stat-value {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-top: 0.15rem;
+}
+
+/* Signature element: aurora glow on the primary revenue card */
+.stat-card--aurora {
+  color: white;
+  background: linear-gradient(160deg, #1e1b4b 0%, #312e81 45%, #0e7490 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-card--aurora::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(124, 58, 237, 0.5) 20%, transparent 40%, rgba(34, 211, 238, 0.45) 60%, transparent 80%);
+  animation: aurora-spin 12s linear infinite;
+  opacity: 0.6;
+}
+
+.stat-card--aurora .stat-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card--aurora .stat-label { color: rgba(226, 232, 240, 0.75); }
+
+@keyframes aurora-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card--aurora::before { animation: none; }
+}
+
+/* ---------------- Buttons ---------------- */
+.btn-gradient {
+  background: var(--gradient-primary);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1.1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-gradient:hover {
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px -8px var(--shell-glow);
+}
+
+/* ---------------- Tables ---------------- */
+.admin-table thead th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.75rem;
+}
+
+.admin-table td {
+  vertical-align: middle;
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr:last-child td { border-bottom: none; }
+
+.status-pill {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pill--placed { background: rgba(124, 58, 237, 0.1); color: #6d28d9; }
+.status-pill--confirmed,
+.status-pill--packed { background: rgba(34, 211, 238, 0.12); color: #0e7490; }
+.status-pill--shipped,
+.status-pill--out_for_delivery { background: rgba(245, 158, 11, 0.12); color: #b45309; }
+.status-pill--delivered { background: rgba(16, 185, 129, 0.12); color: #047857; }
+.status-pill--cancelled { background: rgba(244, 63, 94, 0.1); color: #be123c; }
+.status-pill--return_requested,
+.status-pill--returned { background: rgba(148, 163, 184, 0.15); color: #475569; }
+
+/* ---------------- Chart containers ---------------- */
+.chart-container {
+  position: relative;
+  height: 280px;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 991.98px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+  .admin-sidebar.show {
+    transform: translateX(0);
+    box-shadow: 20px 0 60px rgba(0,0,0,0.35);
+  }
+  .admin-topnav, .admin-main {
+    margin-left: 0;
+  }
+  #sidebarToggle {
+    display: inline-flex;
+  }
+}
+
+/* ---------------- Skeleton loading ---------------- */
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #edf1f5 37%, #e2e8f0 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* Focus visibility for keyboard users */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent-violet);
+  outline-offset: 2px;
+}

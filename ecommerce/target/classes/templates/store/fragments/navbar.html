@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="navbar" class="store-navbar py-2">
+    <div class="container-fluid px-3 px-lg-5 d-flex align-items-center gap-3">
+
+        <a href="/" class="navbar-brand mb-0 flex-shrink-0">Suprith<span class="brand-dot">Store</span></a>
+
+        <div class="dropdown category-dropdown d-none d-lg-block position-relative">
+            <button class="btn btn-light border-0 d-flex align-items-center gap-2">
+                <i class="fa-solid fa-bars"></i> Categories
+            </button>
+            <div class="category-mega" id="categoryMegaMenu">
+                <div class="text-muted small px-2 py-3">Loading categories…</div>
+            </div>
+        </div>
+
+        <div class="search-box mx-auto">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="navSearchInput" placeholder="Search for products, brands and more…" autocomplete="off">
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <a href="/wishlist" class="nav-icon-btn" aria-label="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span class="badge-count d-none" id="wishlistCount">0</span>
+            </a>
+            <a href="/cart" class="nav-icon-btn" aria-label="Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="badge-count d-none" id="cartCount">0</span>
+            </a>
+
+            <div class="dropdown">
+                <button class="nav-icon-btn border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Account">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2" id="accountMenu">
+                    <li><a class="dropdown-item" href="/login">Login</a></li>
+                    <li><a class="dropdown-item" href="/register">Create account</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My orders · Suprith Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/storefront.css}">
+</head>
+<body class="storefront">
+
+<div th:replace="~{store/fragments/navbar :: navbar}"></div>
+
+<main class="container py-4">
+    <h1 class="h4 fw-bold mb-4">My orders</h1>
+    <div class="d-flex flex-column gap-3" id="ordersList">
+        <div class="skeleton" style="height:6rem"></div>
+    </div>
+    <nav class="d-flex justify-content-between align-items-center mt-4">
+        <span class="small text-muted" id="pageLabel"></span>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-light" id="prevPageBtn"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="btn btn-sm btn-light" id="nextPageBtn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </nav>
+</main>
+
+<div th:replace="~{store/fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/storefront-common.js}"></script>
+<script th:src="@{/js/store-orders.js}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access denied · Suprith Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/storefront.css}">
+</head>
+<body class="storefront">
+    <div class="d-flex align-items-center justify-content-center" style="min-height:100vh">
+        <div class="text-center px-3" style="max-width:480px">
+            <div class="font-display fw-bold mb-2" style="font-size:5rem; background:var(--gradient-brand); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1">403</div>
+            <h1 class="h4 fw-bold mb-2">You don't have access to this page</h1>
+            <p class="text-muted mb-4">This area is restricted. If you think this is a mistake, try logging in with a different account.</p>
+            <div class="d-flex gap-2 justify-content-center flex-wrap">
+                <a href="/" class="btn btn-brand"><i class="fa-solid fa-house me-2"></i>Back to home</a>
+                <a href="/login" class="btn btn-outline-brand">Switch account</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

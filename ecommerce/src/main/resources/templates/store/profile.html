@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My profile · Suprith Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/storefront.css}">
+</head>
+<body class="storefront">
+
+<div th:replace="~{store/fragments/navbar :: navbar}"></div>
+
+<main class="container py-4">
+    <h1 class="h4 fw-bold mb-4">My profile</h1>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-3">
+            <div class="card-surface p-3 text-center">
+                <div id="profileAvatar" class="mx-auto mb-2 d-flex align-items-center justify-content-center bg-brand-gradient text-white fw-bold"
+                     style="width:72px;height:72px;border-radius:50%;font-size:1.5rem">?</div>
+                <div class="fw-semibold" id="profileNameLabel">—</div>
+                <div class="small text-muted" id="profileEmailLabel">—</div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-9">
+            <div class="card-surface p-3 mb-3">
+                <h2 class="h6 fw-bold mb-3">Edit profile</h2>
+                <form id="profileForm" class="row g-2">
+                    <div class="col-md-6"><label class="form-label small">Full name</label><input type="text" class="form-control" id="pfName" required></div>
+                    <div class="col-md-6"><label class="form-label small">Profile photo URL</label><input type="url" class="form-control" id="pfPhoto" placeholder="https://…"></div>
+                    <div class="col-12"><button type="submit" class="btn btn-brand">Save changes</button></div>
+                </form>
+            </div>
+
+            <div class="card-surface p-3 mb-3">
+                <h2 class="h6 fw-bold mb-3">Change password</h2>
+                <form id="passwordForm" class="row g-2">
+                    <div class="col-md-6"><label class="form-label small">Current password</label><input type="password" class="form-control" id="currentPassword" required></div>
+                    <div class="col-md-6"><label class="form-label small">New password</label><input type="password" class="form-control" id="newPassword" minlength="6" required></div>
+                    <div class="col-12"><button type="submit" class="btn btn-outline-brand">Update password</button></div>
+                </form>
+            </div>
+
+            <div class="card-surface p-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h6 fw-bold mb-0">Saved addresses</h2>
+                    <button class="btn btn-sm btn-outline-brand" id="addAddressBtn"><i class="fa-solid fa-plus me-1"></i>Add new</button>
+                </div>
+                <div id="addressList" class="d-flex flex-column gap-2">
+                    <div class="skeleton" style="height:4rem"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Add/Edit Address Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addressModalTitle">Add address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addressForm">
+                <div class="modal-body">
+                    <input type="hidden" id="addrId">
+                    <div class="row g-2">
+                        <div class="col-6"><label class="form-label small">Full name</label><input type="text" class="form-control" id="addrName" required></div>
+                        <div class="col-6"><label class="form-label small">Phone</label><input type="text" class="form-control" id="addrPhone" required></div>
+                        <div class="col-12"><label class="form-label small">Address line 1</label><input type="text" class="form-control" id="addrLine1" required></div>
+                        <div class="col-12"><label class="form-label small">Address line 2</label><input type="text" class="form-control" id="addrLine2"></div>
+                        <div class="col-6"><label class="form-label small">City</label><input type="text" class="form-control" id="addrCity" required></div>
+                        <div class="col-6"><label class="form-label small">State</label><input type="text" class="form-control" id="addrState" required></div>
+                        <div class="col-6"><label class="form-label small">Postal code</label><input type="text" class="form-control" id="addrPostal" required></div>
+                        <div class="col-6"><label class="form-label small">Country</label><input type="text" class="form-control" id="addrCountry" value="India"></div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="addrDefault">
+                                <label class="form-check-label small" for="addrDefault">Set as default address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-brand">Save address</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{store/fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/storefront-common.js}"></script>
+<script th:src="@{/js/store-profile.js}"></script>
+</body>
+</html>

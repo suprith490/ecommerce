@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout · Suprith Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/storefront.css}">
+</head>
+<body class="storefront">
+
+<div th:replace="~{store/fragments/navbar :: navbar}"></div>
+
+<main class="container py-4">
+    <h1 class="h4 fw-bold mb-4">Checkout</h1>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-8">
+            <div class="card-surface p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h6 fw-bold mb-0">Delivery address</h2>
+                    <button class="btn btn-sm btn-outline-brand" id="addAddressBtn"><i class="fa-solid fa-plus me-1"></i>Add new</button>
+                </div>
+                <div id="addressList" class="d-flex flex-column gap-2">
+                    <div class="skeleton" style="height:4rem"></div>
+                </div>
+            </div>
+
+            <div class="card-surface p-3">
+                <h2 class="h6 fw-bold mb-3">Payment method</h2>
+                <div class="d-flex flex-column gap-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="payCod" value="COD" checked>
+                        <label class="form-check-label" for="payCod">Cash on delivery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="payCard" value="CARD">
+                        <label class="form-check-label" for="payCard">Credit / Debit card</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="payUpi" value="UPI">
+                        <label class="form-check-label" for="payUpi">UPI</label>
+                    </div>
+                </div>
+                <p class="small text-muted mt-3 mb-0"><i class="fa-solid fa-circle-info me-1"></i>This is a demo checkout — no real payment gateway is connected. Card/UPI orders are marked paid automatically.</p>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card-surface p-3">
+                <h2 class="h6 fw-bold mb-3">Order summary</h2>
+                <div id="orderSummary" class="small">
+                    <div class="skeleton" style="height:6rem"></div>
+                </div>
+                <button class="btn btn-brand w-100 mt-3" id="placeOrderBtn">Place order</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Add Address Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add delivery address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addressForm">
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col-6"><label class="form-label small">Full name</label><input type="text" class="form-control" id="addrName" required></div>
+                        <div class="col-6"><label class="form-label small">Phone</label><input type="text" class="form-control" id="addrPhone" required></div>
+                        <div class="col-12"><label class="form-label small">Address line 1</label><input type="text" class="form-control" id="addrLine1" required></div>
+                        <div class="col-12"><label class="form-label small">Address line 2</label><input type="text" class="form-control" id="addrLine2"></div>
+                        <div class="col-6"><label class="form-label small">City</label><input type="text" class="form-control" id="addrCity" required></div>
+                        <div class="col-6"><label class="form-label small">State</label><input type="text" class="form-control" id="addrState" required></div>
+                        <div class="col-6"><label class="form-label small">Postal code</label><input type="text" class="form-control" id="addrPostal" required></div>
+                        <div class="col-6"><label class="form-label small">Country</label><input type="text" class="form-control" id="addrCountry" value="India"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-brand">Save address</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{store/fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/storefront-common.js}"></script>
+<script th:src="@{/js/store-checkout.js}"></script>
+</body>
+</html>

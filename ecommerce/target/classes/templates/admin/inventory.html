@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory · Suprith Store Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body class="admin-shell">
+
+<div th:replace="~{admin/fragments/sidebar :: sidebar('inventory')}"></div>
+<div th:replace="~{admin/fragments/topnav :: topnav('Inventory')}"></div>
+
+<main class="admin-main">
+
+    <ul class="nav nav-pills mb-3" id="inventoryTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-tab="low-stock" type="button">
+                <i class="fa-solid fa-triangle-exclamation me-1"></i>Low stock
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-tab="out-of-stock" type="button">
+                <i class="fa-solid fa-ban me-1"></i>Out of stock
+            </button>
+        </li>
+    </ul>
+
+    <div class="glass-card p-3">
+        <div class="table-responsive">
+            <table class="table admin-table mb-0">
+                <thead>
+                <tr><th>Product</th><th>SKU</th><th>Category</th><th>Current stock</th><th>Update stock</th></tr>
+                </thead>
+                <tbody id="inventoryBody">
+                <tr><td colspan="5"><div class="skeleton" style="height:1.2rem"></div></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <nav class="d-flex justify-content-between align-items-center mt-3">
+            <span class="small text-muted" id="pageLabel"></span>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-light" id="prevPageBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="btn btn-sm btn-light" id="nextPageBtn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </nav>
+    </div>
+</main>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/admin-common.js}"></script>
+<script th:src="@{/js/admin-inventory.js}"></script>
+</body>
+</html>

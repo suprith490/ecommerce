@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard · Suprith Store Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body class="admin-shell">
+
+<div th:replace="~{admin/fragments/sidebar :: sidebar('dashboard')}"></div>
+
+<div th:replace="~{admin/fragments/topnav :: topnav('Dashboard')}"></div>
+
+<main class="admin-main">
+
+    <!-- Stat cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="stat-card stat-card--aurora">
+                <div class="stat-inner">
+                    <div class="stat-label">Total revenue</div>
+                    <div class="stat-value" id="statRevenue">—</div>
+                    <div class="small mt-1" style="color:rgba(226,232,240,.7)">Across all non-cancelled orders</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="80">
+            <div class="stat-card">
+                <div class="stat-icon mb-2" style="background:var(--gradient-primary)"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="stat-label">Total orders</div>
+                <div class="stat-value" id="statOrders">—</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="160">
+            <div class="stat-card">
+                <div class="stat-icon mb-2" style="background:linear-gradient(135deg,#10b981,#22d3ee)"><i class="fa-solid fa-users"></i></div>
+                <div class="stat-label">Total users</div>
+                <div class="stat-value" id="statUsers">—</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="240">
+            <div class="stat-card">
+                <div class="stat-icon mb-2" style="background:linear-gradient(135deg,#f59e0b,#f43f5e)"><i class="fa-solid fa-box-open"></i></div>
+                <div class="stat-label">Total products</div>
+                <div class="stat-value" id="statProducts">—</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-md-4">
+            <div class="glass-card p-3 d-flex align-items-center gap-3">
+                <div class="stat-icon" style="background:var(--gradient-primary)"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <div>
+                    <div class="stat-label mb-0">Pending pipeline</div>
+                    <div class="fw-bold fs-5" id="statPending">—</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="glass-card p-3 d-flex align-items-center gap-3">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#f59e0b,#f43f5e)"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div>
+                    <div class="stat-label mb-0">Low stock</div>
+                    <div class="fw-bold fs-5" id="statLowStock">—</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="glass-card p-3 d-flex align-items-center gap-3">
+                <div class="stat-icon" style="background:#475569"><i class="fa-solid fa-ban"></i></div>
+                <div>
+                    <div class="stat-label mb-0">Out of stock</div>
+                    <div class="fw-bold fs-5" id="statOutOfStock">—</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-xl-7">
+            <div class="glass-card p-3 h-100" data-aos="fade-up">
+                <h2 class="h6 mb-3">Revenue — last 6 months</h2>
+                <div class="chart-container"><canvas id="revenueChart"></canvas></div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-5">
+            <div class="glass-card p-3 h-100" data-aos="fade-up">
+                <h2 class="h6 mb-3">Orders by status</h2>
+                <div class="chart-container"><canvas id="statusChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-xl-5">
+            <div class="glass-card p-3 h-100" data-aos="fade-up">
+                <h2 class="h6 mb-3">Top-selling products</h2>
+                <div class="chart-container"><canvas id="topProductsChart"></canvas></div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-7">
+            <div class="glass-card p-3 h-100" data-aos="fade-up">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h6 mb-0">Recent orders</h2>
+                    <a href="/admin/orders" class="small text-decoration-none">View all →</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table admin-table mb-0">
+                        <thead><tr><th>Order #</th><th>Status</th><th>Items</th><th>Total</th><th>Placed</th></tr></thead>
+                        <tbody id="recentOrdersBody">
+                        <tr><td colspan="5"><div class="skeleton" style="height:1.2rem"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-xl-6">
+            <div class="glass-card p-3 h-100" data-aos="fade-up">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h6 mb-0">Recent users</h2>
+                    <a href="/admin/users" class="small text-decoration-none">View all →</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table admin-table mb-0">
+                        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+                        <tbody id="recentUsersBody">
+                        <tr><td colspan="4"><div class="skeleton" style="height:1.2rem"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-6">
+            <div class="glass-card p-3 h-100" data-aos="fade-up">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h6 mb-0">Recently added products</h2>
+                    <a href="/admin/products" class="small text-decoration-none">View all →</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table admin-table mb-0">
+                        <thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>Rating</th></tr></thead>
+                        <tbody id="recentProductsBody">
+                        <tr><td colspan="4"><div class="skeleton" style="height:1.2rem"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="/js/vendor/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/admin-common.js}"></script>
+<script th:src="@{/js/admin-dashboard.js}"></script>
+<script>AOS.init({ duration: 500, once: true });</script>
+</body>
+</html>

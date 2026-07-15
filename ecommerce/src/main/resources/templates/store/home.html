@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suprith Store — Shop electronics, fashion & more</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" th:href="@{/css/storefront.css}">
+</head>
+<body class="storefront">
+
+<div th:replace="~{store/fragments/navbar :: navbar}"></div>
+
+<main class="container py-4">
+
+    <!-- Hero -->
+    <section class="hero-banner mb-5" data-aos="fade-up">
+        <div class="hero-content">
+            <p class="text-uppercase small fw-semibold mb-2" style="letter-spacing:.1em; color:#ffb800">New season, new deals</p>
+            <h1 class="display-5 fw-bold mb-3" style="max-width:560px">Everything you need, delivered to your door.</h1>
+            <p class="mb-4" style="max-width:480px; color:rgba(255,255,255,.8)">Electronics, fashion, home essentials and more — carefully curated, competitively priced.</p>
+            <a href="/products" class="btn btn-brand btn-lg">Shop now <i class="fa-solid fa-arrow-right ms-2"></i></a>
+        </div>
+    </section>
+
+    <!-- Trust badges -->
+    <section class="row g-3 mb-5" data-aos="fade-up">
+        <div class="col-6 col-md-3">
+            <div class="card-surface p-3 text-center h-100">
+                <i class="fa-solid fa-truck fa-lg text-brand mb-2"></i>
+                <div class="small fw-semibold">Free shipping</div>
+                <div class="small text-muted">On orders over ₹499</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card-surface p-3 text-center h-100">
+                <i class="fa-solid fa-lock fa-lg text-brand mb-2"></i>
+                <div class="small fw-semibold">Secure payments</div>
+                <div class="small text-muted">COD, Card & UPI</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card-surface p-3 text-center h-100">
+                <i class="fa-solid fa-rotate-left fa-lg text-brand mb-2"></i>
+                <div class="small fw-semibold">Easy returns</div>
+                <div class="small text-muted">Hassle-free process</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card-surface p-3 text-center h-100">
+                <i class="fa-solid fa-headset fa-lg text-brand mb-2"></i>
+                <div class="small fw-semibold">Support</div>
+                <div class="small text-muted">We're here to help</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop by category -->
+    <section class="mb-5">
+        <div class="section-heading">
+            <h2 class="h4 fw-bold mb-0">Shop by category</h2>
+        </div>
+        <div class="row g-3" id="categoryGrid">
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:120px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:120px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:120px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:120px"></div></div>
+        </div>
+    </section>
+
+    <!-- New arrivals -->
+    <section class="mb-5">
+        <div class="section-heading">
+            <h2 class="h4 fw-bold mb-0">New arrivals</h2>
+            <a href="/products?sortBy=createdAt&direction=desc" class="text-brand">View all →</a>
+        </div>
+        <div class="row g-3" id="newArrivalsGrid">
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+        </div>
+    </section>
+
+    <!-- Trending / top rated -->
+    <section class="mb-5">
+        <div class="section-heading">
+            <h2 class="h4 fw-bold mb-0">Trending now</h2>
+            <a href="/products?sortBy=averageRating&direction=desc" class="text-brand">View all →</a>
+        </div>
+        <div class="row g-3" id="trendingGrid">
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+            <div class="col-6 col-md-3"><div class="skeleton" style="height:280px"></div></div>
+        </div>
+    </section>
+
+    <!-- Popular brands -->
+    <section class="mb-5">
+        <div class="section-heading">
+            <h2 class="h4 fw-bold mb-0">Popular brands</h2>
+        </div>
+        <div class="d-flex flex-wrap gap-3" id="brandsRow">
+            <div class="skeleton" style="height:56px;width:120px"></div>
+            <div class="skeleton" style="height:56px;width:120px"></div>
+            <div class="skeleton" style="height:56px;width:120px"></div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="card-surface p-4 p-md-5 text-center mb-5" data-aos="fade-up">
+        <h2 class="h4 fw-bold">Get the best deals in your inbox</h2>
+        <p class="text-muted small">Sign up for our newsletter — no spam, just great offers.</p>
+        <form id="newsletterForm" class="d-flex gap-2 justify-content-center flex-wrap mt-3">
+            <input type="email" class="form-control" style="max-width:320px" placeholder="you@example.com" required>
+            <button type="submit" class="btn btn-brand">Subscribe</button>
+        </form>
+    </section>
+</main>
+
+<div th:replace="~{store/fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/storefront-common.js}"></script>
+<script th:src="@{/js/store-home.js}"></script>
+<script>AOS.init({ duration: 500, once: true });</script>
+</body>
+</html>
