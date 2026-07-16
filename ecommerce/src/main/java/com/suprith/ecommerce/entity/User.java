@@ -36,6 +36,7 @@ public class User {
     @Column(nullable = false)
     private boolean enabled = true;
 
+    @Column(length = 2048)
     private String profileImageUrl;
 
     private LocalDateTime createdAt;

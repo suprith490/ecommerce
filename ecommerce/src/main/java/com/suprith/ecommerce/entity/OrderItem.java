@@ -34,6 +34,7 @@ public class OrderItem {
     @Column(nullable = false)
     private String productName;
 
+    @Column(length = 2048)
     private String productImageUrl;
 
     @Column(nullable = false, precision = 12, scale = 2)

@@ -24,6 +24,7 @@ public class Brand {
     @Column(nullable = false, unique = true)
     private String slug;
 
+    @Column(length = 2048)
     private String logoUrl;
 
     @Column(length = 1000)

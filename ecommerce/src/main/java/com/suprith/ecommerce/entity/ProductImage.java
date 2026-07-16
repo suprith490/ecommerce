@@ -23,7 +23,7 @@ public class ProductImage {
     @JsonIgnore
     private Product product;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2048)
     private String imageUrl;
 
     private String altText;
